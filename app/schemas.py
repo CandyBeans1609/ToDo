@@ -1,5 +1,19 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
-class Task(BaseModel):
+class TaskCreate(BaseModel):
     title: str
     completed: bool = False
+
+
+class TaskResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    title: str
+    completed: bool
+
+class TaskUpdate(BaseModel):
+    title: str
+    completed: bool
+    
+    
